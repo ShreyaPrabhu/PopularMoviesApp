@@ -36,7 +36,6 @@ public class MovieMainFragment extends Fragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
-
         return view;
 
     }

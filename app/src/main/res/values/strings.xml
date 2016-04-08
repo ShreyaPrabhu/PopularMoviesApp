@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_movie_main">MovieMain</string>
+    <string name="title_activity_movie_main_fragment">MovieMainFragment</string>
+</resources>

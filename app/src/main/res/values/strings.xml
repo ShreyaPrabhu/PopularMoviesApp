@@ -5,4 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_movie_main">MovieMain</string>
     <string name="title_activity_movie_main_fragment">MovieMainFragment</string>
+    <string name="action_highest_rating">Ratings</string>
+    <string name="action_most_popular">Popularity</string>
+
 </resources>

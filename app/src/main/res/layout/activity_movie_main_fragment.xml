@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.shreyaprabhu.popularmovies.MovieListFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@string/title_activity_movie_main_fragment">
 
     <!-- TODO: Update blank fragment layout -->
 

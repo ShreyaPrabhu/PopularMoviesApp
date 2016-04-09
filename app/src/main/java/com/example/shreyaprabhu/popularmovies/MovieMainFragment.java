@@ -38,13 +38,16 @@ public class MovieMainFragment extends Fragment {
     private android.support.v7.widget.Toolbar toolbar;
     private RecyclerView mRecyclerView;
     private List<MovieAttributes> mMovies = new ArrayList<>();
+    public String BaseUrl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         fetchMovieDetails fetchMovieDetails = new fetchMovieDetails();
         fetchMovieDetails.execute();
+        BaseUrl = "http://api.themoviedb.org/3/movie/now_playing";
 
     }
 
@@ -87,18 +90,42 @@ public class MovieMainFragment extends Fragment {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_most_popular) {
+
+            sortMovies("popular");
             return true;
         }
 
+        if (id == R.id.action_highest_rated) {
+
+            sortMovies("rate");
+            return true;
+        }
+
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sortMovies(String a){
+        if(a.equals("popular")) {
+            BaseUrl = "http://api.themoviedb.org/3/movie/popular";
+            fetchMovieDetails fetchMovieDetails = new fetchMovieDetails();
+            fetchMovieDetails.execute();
+
+        }
+        if(a.equals("rate")) {
+            BaseUrl = "http://api.themoviedb.org/3/movie/top_rated";
+            fetchMovieDetails fetchMovieDetails = new fetchMovieDetails();
+            fetchMovieDetails.execute();
+
+        }
     }
 
     private class fetchMovieDetails extends AsyncTask<Void, Void, List<MovieAttributes>> {
 
 
         private final String TAG = fetchMovieDetails.class.getSimpleName();
-        private final String KEY ="";  //here goes the api key
+        private final String KEY ="140cb8624b45f03ae9c0d887bf161ee4";  //here goes the api key
 
 
         @Override
@@ -127,7 +154,7 @@ public class MovieMainFragment extends Fragment {
                 OkHttpClient client = new OkHttpClient();
 
                 // Build URL
-                String url = Uri.parse("http://api.themoviedb.org/3/movie/popular")
+                String url = Uri.parse(BaseUrl)
                         .buildUpon()
                         .appendQueryParameter("api_key", KEY)
                         .appendQueryParameter("page", "1")

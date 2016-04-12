@@ -8,18 +8,18 @@ import java.io.Serializable;
 public class MovieAttributes implements Serializable {
 
 
-    private String Title;
-    private String posterPath;
+    private String title;
+    private String poster_path;
     private String overview;
-    private String releaseDate;
-    private String rating;
+    private String release_date;
+    private String vote_average;
 
-    public MovieAttributes(String Title, String posterPath, String overview, String rating, String releaseDate) {
-        this.Title = Title;
-        this.posterPath = posterPath;
+    public MovieAttributes(String title, String poster_path, String overview, String vote_average, String release_date) {
+        this.title = title;
+        this.poster_path = poster_path;
         this.overview = overview;
-        this.rating = rating;
-        this.releaseDate = releaseDate;
+        this.vote_average = vote_average;
+        this.release_date = release_date;
     }
 
     public MovieAttributes(){
@@ -30,19 +30,19 @@ public class MovieAttributes implements Serializable {
     //Methods to get and set each attributes
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
-    public void setTitle(String Title) {
-        this.Title = Title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getposterPath() {
-        return posterPath;
+        return poster_path;
     }
 
-    public void setposterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setposterPath(String poster_path) {
+        this.poster_path = poster_path;
     }
 
     public String getoverview() {
@@ -54,19 +54,19 @@ public class MovieAttributes implements Serializable {
     }
 
     public String getreleaseDate() {
-        return releaseDate;
+        return release_date;
     }
 
-    public void setreleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setreleaseDate(String release_date) {
+        this.release_date = release_date;
     }
 
     public String getrating() {
-        return rating;
+        return vote_average;
     }
 
-    public void setrating(String rating) {
-        this.rating = rating;
+    public void setrating(String vote_average) {
+        this.vote_average = vote_average;
     }
 }
 

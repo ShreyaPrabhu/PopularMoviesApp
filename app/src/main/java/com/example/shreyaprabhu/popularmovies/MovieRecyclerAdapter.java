@@ -1,6 +1,7 @@
 package com.example.shreyaprabhu.popularmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,19 +21,39 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     private List<MovieAttributes> moviesList;
     private static Context mContext;
-    private MovieAttributes mMovie;
 
+    public static String MovieAtts = "MovieAtts";
 
     public static class MovieItemViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImageView;
+        private MovieAttributes mMovie;
 
         public MovieItemViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.imageView);
             //set onitemClickListener for each movie_item
+
+            mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                    intent.putExtra(MovieAtts, mMovie);
+                    mContext.startActivity(intent);
+                }
+            });
         }
+
+        //This has to be implemented when an item in recyclerview is clicked.
+        public void RetrieveImageDetails(MovieAttributes movie, MovieItemViewHolder holder) {
+            mMovie = movie;
+
+            String posterUrl = mMovie.getposterPath();
+            Picasso.with(mContext).load("http://image.tmdb.org/t/p/w500" + posterUrl).placeholder(R.drawable.placeholder).into((holder).mImageView);
+        }
+
     }
+
     public MovieRecyclerAdapter(Context context, List<MovieAttributes> movies) {
         super();
         this.mContext = context;
@@ -52,11 +73,8 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
     @Override
     public void onBindViewHolder(MovieItemViewHolder holder, int position) {
 
-        mMovie = moviesList.get(position);
-        String posterUrl = mMovie.getposterPath();
-        Picasso.with(mContext).load("http://image.tmdb.org/t/p/w500" + posterUrl).placeholder(R.drawable.placeholder).into((holder).mImageView);
-
-
+        MovieAttributes Movie = moviesList.get(position);
+        holder.RetrieveImageDetails(Movie, holder);
     }
 
     @Override

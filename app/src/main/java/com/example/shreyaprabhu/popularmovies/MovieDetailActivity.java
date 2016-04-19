@@ -6,7 +6,10 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     TextView overview;
     TextView date;
     TextView ratings;
+    ImageView poster_image;
 
     private android.support.v7.widget.Toolbar toolbar;
 
@@ -37,6 +41,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         overview = (TextView) findViewById(R.id.overview);
         date = (TextView) findViewById(R.id.releasedate);
         ratings = (TextView) findViewById(R.id.ratings);
+        poster_image = (ImageView) findViewById(R.id.poster_image);
 
 
         if (movieClicked == null) {
@@ -44,12 +49,14 @@ public class MovieDetailActivity extends AppCompatActivity {
             overview.setText("null");
             date.setText("null");
             ratings.setText("null");
+            poster_image.setImageResource(R.drawable.placeholder);
 
         } else {
             title.setText(movieClicked.getTitle());
             overview.setText(movieClicked.getoverview());
-            date.setText(movieClicked.getreleaseDate());
-            ratings.setText(movieClicked.getrating());
+            date.setText("Movie Release date\n" + movieClicked.getreleaseDate());
+            ratings.setText("Movie Rating\n" + movieClicked.getrating() + "/10");
+            Picasso.with(this).load("http://image.tmdb.org/t/p/w500" + movieClicked.getposterPath()).placeholder(R.drawable.placeholder).into((poster_image));
 
 
         }

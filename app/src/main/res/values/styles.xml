@@ -20,4 +20,9 @@
 
     </style>
 
+
+    <style name="Custom" parent="@android:style/TextAppearance.Large" >
+        <item name="android:typeface">serif</item>
+
+    </style>
 </resources>
